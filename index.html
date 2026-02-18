@@ -1,14 +1,155 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>프리미엄 로또 추천기</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        color: white;
+    }
+
+    h1 {
+        margin-top: 50px;
+        font-size: 32px;
+        letter-spacing: 2px;
+    }
+
+    .container {
+        margin-top: 30px;
+        width: 90%;
+        max-width: 800px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    .set-title {
+        margin-bottom: 15px;
+        font-size: 18px;
+        opacity: 0.8;
+    }
+
+    .ball {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 55px;
+        height: 55px;
+        margin: 8px;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 18px;
+        color: white;
+        animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0); }
+        100% { transform: scale(1); }
+    }
+
+    button {
+        margin: 30px 0 60px 0;
+        padding: 15px 35px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background: linear-gradient(45deg, #ff512f, #dd2476);
+        color: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+</style>
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+
+<h1>🎯 수미의 로또번호 생성기</h1>
+
+<div class="container" id="lottoContainer"></div>
+
+<button onclick="generateAll()">5조합 다시 생성하기</button>
+
+<script>
+function generateOneSet() {
+    let numbers = [];
+
+    while (numbers.length < 6) {
+        let num = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(num)) {
+            numbers.push(num);
+        }
+    }
+
+    numbers.sort((a, b) => a - b);
+    return numbers;
+}
+
+function getColor(num) {
+    if (num <= 10) return "#fbc400";
+    if (num <= 20) return "#69c8f2";
+    if (num <= 30) return "#ff7272";
+    if (num <= 40) return "#aaa";
+    return "#b0d840";
+}
+
+function generateAll() {
+    let container = document.getElementById("lottoContainer");
+    container.innerHTML = "";
+
+    for (let i = 1; i <= 5; i++) {
+        let numbers = generateOneSet();
+
+        let card = document.createElement("div");
+        card.className = "card";
+
+        let title = document.createElement("div");
+        title.className = "set-title";
+        
+        title.innerText = "Combination " + i;
+        card.appendChild(title);
+
+        numbers.forEach(num => {
+            let ball = document.createElement("div");
+            ball.className = "ball";
+            ball.innerText = num;
+            ball.style.backgroundColor = getColor(num);
+            card.appendChild(ball);
+        });
+
+        container.appendChild(card);
+    }
+}
+
+// 자동으로 첫 로드 시 생성
+generateAll();
+</script>
+
 </body>
 </html>
