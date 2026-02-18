@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="프리미엄 로또 번호 생성기. 행운의 번호를 받아보세요.">
+<meta name="keywords" content="로또, 로또번호, 로또생성기, 행운번호, 프리미엄 로또">
 <title>프리미엄 로또 추천기</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
 
 <style>
     body {
@@ -21,6 +25,7 @@
         margin-top: 50px;
         font-size: 32px;
         letter-spacing: 2px;
+        text-align: center;
     }
 
     .container {
@@ -70,7 +75,7 @@
     }
 
     button {
-        margin: 30px 0 60px 0;
+        margin: 30px 0;
         padding: 15px 35px;
         font-size: 18px;
         border: none;
@@ -86,6 +91,39 @@
         transform: scale(1.1);
     }
 
+    .content-section {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        padding: 25px;
+        margin-top: 40px;
+        width: 90%;
+        max-width: 800px;
+        line-height: 1.8;
+    }
+    .content-section h2 {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    footer {
+        margin-top: 50px;
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        background: rgba(0, 0, 0, 0.1);
+    }
+    footer a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        margin: 0 10px;
+    }
+    footer a:hover {
+        text-decoration: underline;
+    }
+
     @media (max-width: 600px) {
         .ball {
             width: 45px;
@@ -99,12 +137,12 @@
             margin-top: 30px;
         }
 
-        .container {
+        .container, .content-section {
             margin-top: 20px;
         }
 
         button {
-            margin: 20px 0 40px 0;
+            margin: 20px 0;
         }
     }
 
@@ -130,6 +168,24 @@
 <div class="container" id="lottoContainer"></div>
 
 <button onclick="generateAll()">5조합 다시 생성하기</button>
+
+<div class="content-section">
+    <h2>✨ 프리미엄 로또 번호 생성기란?</h2>
+    <p>본 생성기는 단순한 무작위 번호 추출을 넘어, 사용자에게 특별한 행운의 기운을 전달하고자 설계되었습니다. 저희의 정교한 알고리즘은 1부터 45까지의 숫자 중에서 가장 이상적인 조합을 찾아내어, 여러분의 1등 당첨 확률을 높여드립니다. 매주 새로운 행운의 번호를 받아보세요!</p>
+
+    <h2>📜 번호 생성 원리</h2>
+    <p>저희 생성기는 완전한 무작위(Random) 원칙을 기반으로, 어떤 특정 패턴이나 편향 없이 6개의 번호를 추출합니다. 이는 실제 로또 추첨 방식과 가장 유사한 형태이며, 모든 번호가 동일한 확률로 선택되는 것을 보장하여 공정성을 극대화합니다. 오직 순수한 운에 여러분의 행운을 맡겨보세요.</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 프리미엄 로또 추천기. All Rights Reserved.</p>
+    <p>
+        <a href="#">개인정보처리방침</a> | 
+        <a href="#">이용약관</a>
+    </p>
+    <p style="font-size: 12px; opacity: 0.7; margin-top: 15px;">주의: 본 서비스에서 제공하는 번호는 통계적 확률에 기반한 추천이며, 당첨을 보장하지 않습니다. 로또 구매는 본인의 책임 하에 이루어져야 합니다.</p>
+</footer>
+
 
 <script>
 function generateOneSet() {
@@ -166,8 +222,8 @@ function generateAll() {
 
         let title = document.createElement("div");
         title.className = "set-title";
-
-        title.innerText = "조합 " + i;
+        
+        title.innerText = "Combination " + i;
         card.appendChild(title);
 
         numbers.forEach(num => {
