@@ -140,13 +140,18 @@ function generateAll() {
         title.className = "set-title";
         title.innerText = "✨ 추천 조합 " + i;
         card.appendChild(title);
+
+        let ballContainer = document.createElement("div");
+        ballContainer.className = "ball-container";
+
         numbers.forEach(num => {
             let ball = document.createElement("div");
             ball.className = "ball";
             ball.innerText = num;
             ball.style.backgroundColor = getColor(num);
-            card.appendChild(ball);
+            ballContainer.appendChild(ball);
         });
+        card.appendChild(ballContainer);
         container.appendChild(card);
     }
 }
