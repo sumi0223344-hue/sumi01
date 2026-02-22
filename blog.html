@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블로그 - 로또에 대한 깊이 있는 이야기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <!-- 데스크톱 상단 네비게이션 -->
+        <nav class="top-nav">
+            <a href="index.html">홈</a>
+            <a href="about.html">소개</a>
+            <a href="blog.html" class="active">블로그</a>
+            <a href="contact.html">문의하기</a>
+            <a href="coin-flip.html">동전던지기</a>
+            <a href="privacy.html">개인정보처리방침</a>
+            <a href="terms.html">이용약관</a>
+        </nav>
+        
+        <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+    </header>
+
+    <main class="content-page">
+        <h1><span class="icon">✍️</span>프리미엄 로또 블로그</h1>
+        <p>로또와 행운, 그 너머의 흥미로운 이야기들을 만나보세요. 저희는 로또에 대한 다양한 정보와 깊이 있는 분석을 통해 여러분의 로또 경험을 더욱 풍요롭게 만들고자 합니다.</p>
+
+        <section class="blog-list">
+            <article class="blog-post-summary">
+                <h2><a href="blog-post-1.html">로또 당첨의 심리학: 우리는 왜 1등의 꿈을 꾸는가?</a></h2>
+                <p class="post-meta">2024년 5월 22일</p>
+                <p>매주 수백만 명의 사람들이 로또를 구매합니다. 당첨 확률이 극히 낮다는 것을 알면서도 우리는 왜 1등의 꿈을 버리지 못할까요? 이 글에서는 로또 구매 이면에 숨겨진 인간의 심리적 동기와 희망의 역할을 탐구합니다. '대박'의 꿈이 우리 삶에 미치는 영향과 긍정적, 부정적 측면을 함께 분석해 봅니다.</p>
+                <a href="blog-post-1.html" class="read-more">더 읽어보기 &rarr;</a>
+            </article>
+
+            <article class="blog-post-summary">
+                <h2><a href="blog-post-2.html">역대 최고 로또 당첨금: 인생을 바꾼 행운의 순간들</a></h2>
+                <p class="post-meta">2024년 5월 20일</p>
+                <p>숫자 몇 개가 맞아 인생이 송두리째 바뀐 사람들. 전 세계 역대 최고 로또 당첨금 기록을 살펴보고, 그 주인공들의 드라마틱한 이야기를 소개합니다. 갑작스러운 부가 가져온 삶의 변화와 그들이 돈을 사용한 방식, 그리고 그로부터 얻을 수 있는 교훈은 무엇일까요? 실제 사례를 통해 행운의 의미를 되새겨 봅니다.</p>
+                <a href="blog-post-2.html" class="read-more">더 읽어보기 &rarr;</a>
+            </article>
+
+            <article class="blog-post-summary">
+                <h2><a href="blog-post-3.html">로또 초보자를 위한 완벽 가이드: 구매부터 당첨금 수령까지</a></h2>
+                <p class="post-meta">2024년 5월 18일</p>
+                <p>로또를 처음 시작하시나요? 혹은 매번 헷갈리는 부분이 있으신가요? 이 완벽 가이드에서는 로또 용지 구매 방법, 자동/수동 선택의 차이, 번호 마킹 규칙, 당첨 확인 방법, 그리고 등수별 당첨금 수령 장소 및 절차까지 모든 과정을 상세하게 안내합니다. 이 글 하나면 당신도 로또 전문가가 될 수 있습니다.</p>
+                <a href="blog-post-3.html" class="read-more">더 읽어보기 &rarr;</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 프리미엄 로또 추천기. All Rights Reserved.</p>
+        <p>
+            <a href="privacy.html">개인정보처리방침</a> | 
+            <a href="terms.html">이용약관</a> | 
+            <a href="contact.html">문의하기</a>
+        </p>
+    </footer>
+
+<script>
+// 다크 모드 스크립트
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    darkModeToggle.textContent = '☀️';
+} else {
+    body.classList.remove('dark-mode');
+    darkModeToggle.textContent = '🌙';
+}
+
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        darkModeToggle.textContent = '☀️';
+    } else {
+        localStorage.setItem('theme', 'light');
+        darkModeToggle.textContent = '🌙';
+    }
+});
+</script>
+
+</body>
+</html>

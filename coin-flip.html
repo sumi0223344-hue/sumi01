@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동전 던지기 - 행운을 시험해보세요</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <!-- 데스크톱 상단 네비게이션 -->
+        <nav class="top-nav">
+            <a href="index.html">홈</a>
+            <a href="about.html">소개</a>
+            <a href="blog.html">블로그</a>
+            <a href="contact.html">문의하기</a>
+            <a href="coin-flip.html" class="active">동전던지기</a>
+            <a href="privacy.html">개인정보처리방침</a>
+            <a href="terms.html">이용약관</a>
+        </nav>
+        
+        <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1><span class="icon">🪙</span>동전 던지기</h1>
+            <p class="subtitle">앞면일까요, 뒷면일까요? 당신의 행운을 시험해보세요!</p>
+        </section>
+
+        <section class="coin-container">
+            <div id="coin">
+                <div id="heads" class="coin-face">
+                    <img src="heads.svg" alt="앞면">
+                </div>
+                <div id="tails" class="coin-face">
+                    <img src="tails.svg" alt="뒷면">
+                </div>
+            </div>
+            <button id="flipButton" class="lotto-btn"><span class="icon">🔄</span>동전 던지기</button>
+            <div id="result"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 프리미엄 로또 추천기. All Rights Reserved.</p>
+        <p>
+            <a href="privacy.html">개인정보처리방침</a> | 
+            <a href="terms.html">이용약관</a> | 
+            <a href="contact.html">문의하기</a>
+        </p>
+    </footer>
+
+    <script>
+        const coin = document.getElementById('coin');
+        const result = document.getElementById('result');
+        const flipButton = document.getElementById('flipButton');
+        let isFlipping = false;
+        let currentRotation = 0; // Y축 회전 각도
+
+        function flipCoin() {
+            if (isFlipping) return;
+            isFlipping = true;
+            result.textContent = '';
+
+            // 1. 최종 결과 결정 (앞면: 0, 뒷면: 1)
+            const outcome = Math.random() < 0.5 ? 0 : 1; 
+
+            // 2. 회전 애니메이션 설정
+            // 기본 5~10바퀴 회전
+            const randomSpins = Math.floor(Math.random() * 6) + 5; 
+            // 최종 각도 계산: (전체 회전) + (뒷면일 경우 180도 추가)
+            const targetRotation = currentRotation + (randomSpins * 360) + (outcome * 180);
+            
+            coin.style.transition = 'transform 3s cubic-bezier(0.3, 0, 0.3, 1)';
+            coin.style.transform = `rotateY(${targetRotation}deg)`;
+
+            // 3. 현재 회전 상태 저장 (다음 던지기를 위해)
+            // 360도로 나눈 나머지를 저장하여 불필요하게 큰 값이 되는 것을 방지
+            currentRotation = targetRotation % 360;
+
+            // 4. 애니메이션 종료 후 결과 표시
+            setTimeout(() => {
+                result.textContent = outcome === 0 ? '앞면입니다!' : '뒷면입니다!';
+                isFlipping = false;
+
+                // 애니메이션 효과를 부드럽게 만들기 위해 transition을 잠시 제거
+                coin.style.transition = 'none'; 
+            }, 3000);
+        }
+
+        flipButton.addEventListener('click', flipCoin);
+
+        // 다크 모드 스크립트
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        } else {
+            body.classList.remove('dark-mode');
+            darkModeToggle.textContent = '🌙';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                darkModeToggle.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                darkModeToggle.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>
